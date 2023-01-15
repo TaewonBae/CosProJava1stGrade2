@@ -109,9 +109,76 @@ class Main {
 }
 ```
 
-### 1차) 문제3  - 
+### 1차) 문제3  -  경품 당첨자 구하기
 ```Java
+class Main {
+    public int func_a(int n){
+        int ret = 1;
+        while(n > 0){
+            ret *= 10;
+            n--;
+        }
+        return ret;
+    }
 
+    int func_b(int n){
+        int ret = 0;
+        while(n > 0){
+            ret++;
+            n /= 10;
+        }
+        return ret;
+    }
+    
+    int func_c(int n){
+        int ret = 0;
+        while(n > 0){
+            ret += n%10;
+            n /= 10;
+        }
+        return ret;
+    }
+    
+	public int solution(int num) {
+        int nextNum = num; // nextNum에 현재게시글의 넘버로 초기화
+        while(true){
+	    //1. 게시글 번호 1증가
+            nextNum++;
+	    //숫자의 자리수의 갯수 구하기
+            int length = func_b(nextNum);
+            if(length % 2 != 0)
+                continue;//짝수가 아닌경우 다시while문의 처음으로 돌아가 짝수이면 2번으로
+	    //2. 짝수이면 앞자리수와 뒷자리수 절반을 분리해야됨 그러려면 divisor를 구해야됨
+            int divisor = func_a(length/2); //divisor : 10의 (자릿수 개수/2)제곱
+            int front = nextNum / divisor;
+            int back = nextNum % divisor;
+            
+	    //2-1. 앞 숫자 합, 뒷 숫자 합
+            int frontSum = func_c(front);
+            int backSum = func_c(back);
+	    //2-2. 각 숫자의 합이 서로 같으면 3으로 while문을 빠져나감, 같지 않으면 1로 돌아감
+            if(frontSum == backSum)
+                break;
+        }
+	//3. 2에서 구한 당첨 번호 - 처음 매개변수로 주어진 게시글 번호 리턴
+        return nextNum - num;
+    }
+    // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다.
+    public static void main(String[] args) {
+        Main sol = new Main();
+        int num1 = 1;
+        int ret1 = sol.solution(num1);
+
+        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+        System.out.println("solution 메소드의 반환 값은 " + ret1 + " 입니다.");
+
+        int num2 = 235386;
+        int ret2 = sol.solution(num2);
+
+        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+        System.out.println("solution 메소드의 반환 값은 " + ret2 + " 입니다.");
+    }
+}
 ```
 
 ### 1차) 문제4  - 
