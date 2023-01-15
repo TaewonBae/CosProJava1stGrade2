@@ -181,9 +181,42 @@ class Main {
 }
 ```
 
-### 1차) 문제4  - 
+### 1차) 문제4  - 합이 k 배가 되는 수
 ```Java
+// 다음과 같이 import를 사용할 수 있습니다.
+import java.util.*;
 
+class Main {
+    public int solution(int[] arr, int K) {
+        int answer = 0;
+        int n = arr.length;//배열의 길이
+			
+        for(int i=0; i<n-2;i++){//index 0 ~ n-2 까지
+		for(int j=i+1;j<n-1;j++){//index i+1 ~ n-1까지
+			for(int k=j+1;k<n;k++){//index j+1 ~ n까지
+				//3수의 합이 K의 배수이면 answer+=1;
+				if((arr[i]+arr[j]+arr[k])%K==0){
+					answer = answer+1;
+					// System.out.println(arr[i]+" "+arr[j]+" "+arr[k]);
+				}
+			}
+		}
+	}
+        return answer;
+    }
+
+    // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다.
+    public static void main(String[] args) {
+        Main sol = new Main();
+        int[] arr = {1, 2, 3, 4, 5};
+        int K = 3;
+        int ret = sol.solution(arr, K);
+
+
+        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+        System.out.println("solution 메소드의 반환 값은 " + ret + " 입니다.");
+    }
+}
 ```
 
 ### 1차) 문제5  - 
