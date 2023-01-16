@@ -365,7 +365,7 @@ class Main {
         for(int i = 0; i < length - 2; ++i){
             int firstCheck = password.charAt(i + 1) - password.charAt(i); // 다음꺼 - 처음꺼 체크
             int secondCheck = password.charAt(i + 2) - password.charAt(i+1); // 다다음꺼 - 다음꺼 체크
-            if(firstCheck == secondCheck && (firstCheck == 1 || firstCheck == -1))
+            if(firstCheck == secondCheck && (firstCheck == 1 || firstCheck == -1)) //두 값의 차이가 1이면서 다음, 다다음 차이값이 같을때
                 return false;
         }
         return true;
@@ -385,6 +385,30 @@ class Main {
 
 ### 2차) 문제10  - 
 ```Java
+class Main {
+    public String solution(String s) {
+		    
+        s += '#';
+        String answer = "";
+        for(int i = 0; i < s.length(); ++i){
+	// 1. 현재 숫자가 0 & 다음 숫자가 0이 아닐경우
+            if (s.charAt(i) == '0' && s.charAt(i+1) != '0')
+                answer += "0";
+            else if(s.charAt(i) =='1') //2. 현재 숫자가 1이면
+                answer += "1";
+        }
+        return answer;
+    }
 
+    // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다. main 메소드는 잘못된 부분이 없으니, solution 메소드만 수정하세요.
+    public static void main(String[] args) {
+        Main sol = new Main();
+        String s = "101100011100";
+        String ret = sol.solution(s);
+
+        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+        System.out.println("solution 메소드의 반환 값은 \"" + ret + "\" 입니다.");
+    }
+}
 ```
 
