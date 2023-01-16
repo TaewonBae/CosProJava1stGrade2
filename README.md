@@ -260,6 +260,39 @@ class Main {
 
 ### 2차) 문제6 - 
 ```Java
+// 다음과 같이 import를 사용할 수 있습니다.
+import java.util.*;
+
+class Main {
+    public int[] solution(String commands) {
+        // answer을 arr = {0,0} 좌표로 둔다.
+        int[] answer = {0, 0};
+	// 4가지 case로 나눠서 x좌표는 arr[0], y좌표는 arr[1]이동
+	for(int i=0; i<commands.length();i++){
+		if(commands.charAt(i)=='L'){
+			answer[0]-=1;
+		}else if(commands.charAt(i)=='R'){
+			answer[0]+=1;
+		}else if(commands.charAt(i)=='U'){
+			answer[1]+=1;
+		}else if(commands.charAt(i)=='D'){
+			answer[1]-=1;
+		}
+	}
+        return answer;
+    }
+    // 아래는 테스트케이스 출력을 해보기 위한 main 메소드입니다.
+    public static void main(String[] args) {
+        Main sol = new Main();
+        String commands = "URDDL";
+        int[] ret = sol.solution(commands);
+				// L : (x,y) -> (x-1,y)
+				// R : (x,y) -> (x+1,y)
+				// U : (x,y) -> (x,y+1)
+				// D : (x,y) -> (x,y-1)
+        System.out.println("solution 메소드의 반환 값은 " + Arrays.toString(ret) + " 입니다.");
+    }
+}
 
 ```
 
