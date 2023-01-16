@@ -296,8 +296,29 @@ class Main {
 
 ```
 
-### 2차) 문제7  - 
+### 2차) 문제7  - 거스름돈 구하기 
 ```Java
+class Main {
+    public int solution(int money) {
+        int coin[] = {10, 50, 100, 500, 1000, 5000, 10000, 50000};
+        int counter = 0;
+        int idx = coin.length - 1;
+        while (money > 0){
+     	// 1. 해당 화폐 단위의 동전 개수를 구하여 합산.
+	    counter += money/coin[idx]; // 총 거스름돈 동전의 개수 = 이전 동전 개수 + 금액/화폐단위(뒤에서부터 하나씩)
+            money %= coin[idx]; // 2. 계산된 단위를 제외하고 남은 금액 계산 >> 남은 금액 : 금액%화폐단위
+            idx -= 1; // 3. 다음 화폐 단위를 위해 인덱스 번호를 1 감소
+        }
+        return counter;
+    }
+    public static void main(String[] args) {
+        Main sol = new Main();
+        int money = 2760;
+        int ret = sol.solution(money);
+
+	System.out.println("solution 메소드의 반환 값은 " + ret + " 입니다.");
+    }
+}
 
 ```
 
