@@ -355,9 +355,32 @@ class Main {
 }
 ```
 
-### 2차) 문제9  - 
-```Java
+### 2차) 문제9  - 비밀번호 검사
 
+```Java
+class Main {
+    public boolean solution(String password) {
+			
+        int length = password.length();
+        for(int i = 0; i < length - 2; ++i){
+            int firstCheck = password.charAt(i + 1) - password.charAt(i); // 다음꺼 - 처음꺼 체크
+            int secondCheck = password.charAt(i + 2) - password.charAt(i+1); // 다다음꺼 - 다음꺼 체크
+            if(firstCheck == secondCheck && (firstCheck == 1 || firstCheck == -1))
+                return false;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        Main sol = new Main();
+        String password1 = "cospro890";
+        boolean ret1 = sol.solution(password1);
+        System.out.println("solution 메소드의 반환 값은 " + ret1 + " 입니다.");
+
+        String password2 = "cba323";
+        boolean ret2 = sol.solution(password2);
+        System.out.println("solution 메소드의 반환 값은 " + ret2+ " 입니다.");       
+    }
+}
 ```
 
 ### 2차) 문제10  - 
